@@ -1875,6 +1875,7 @@ MonoBehaviour:
   Hoe: {fileID: 1052704862}
   waterCan: {fileID: 646000158}
   waterLevelUI: {fileID: 876433568}
+  fundsText: {fileID: 1453413617}
   waterLevel: 1
   waterPerUse: 0.1
 --- !u!1 &315949135
@@ -3908,6 +3909,7 @@ MonoBehaviour:
   Hoe: {fileID: 0}
   waterCan: {fileID: 0}
   waterLevelUI: {fileID: 0}
+  fundsText: {fileID: 0}
   waterLevel: 1
   waterPerUse: 0.1
 --- !u!1 &455555335
