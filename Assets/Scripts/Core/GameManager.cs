@@ -44,10 +44,16 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
             Debug.Log("GameManager set through Awake");
         }
+        else if (GameManager.instance != this)
+        {
+            Debug.Log("Replacing old GameManager with the scene GameManager.");
+            Destroy(GameManager.instance.gameObject);
+            instance = this;
+            DontDestroyOnLoad(this);
+        }
         else 
         {
-            Debug.Log("Duplicate GameManager attempted. Deleting new attempt.");
-            Destroy(this);
+            Debug.Log("GameManager already initialized.");
         }
     }
 
