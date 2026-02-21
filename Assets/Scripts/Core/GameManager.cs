@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour
         // Do not make a set! READ ONLY!
     }
     public int funds = 0;
+    
+    public int seeds = 0;
     private Vector3 savedPlayerPosition;
     private bool hasSavedPlayerPosition = false;
     private bool restorePlayerPositionOnNextLoad = false;
@@ -37,6 +39,15 @@ public class GameManager : MonoBehaviour
     public int getFunds()
         {
             return this.funds;
+        }
+    
+    public void AddSeeds(int amnt)
+        {
+            seeds += amnt;
+        }
+    public int getSeeds()
+        {
+        return seeds;
         }
     void Awake()
     {

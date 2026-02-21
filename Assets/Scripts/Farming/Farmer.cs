@@ -68,11 +68,7 @@ namespace Farming
                     default: break;
                 }
                 winCondition.countWateredTiles();
-                UpdateFundsDisplay();
+                FundsUI.Instance?.UpdateFundsDisplay();
             }
-        void UpdateFundsDisplay()
-        {
-            fundsText.text = "Funds: $" + GameManager.Instance.getFunds();
-        }
     }
 }
