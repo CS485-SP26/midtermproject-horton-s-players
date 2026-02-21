@@ -12,7 +12,7 @@ namespace Farming
         [SerializeField] private int rows = 4;
         [SerializeField] private int cols = 4;
         [SerializeField] private float tileGap = 0.1f;
-        private List<FarmTile> tiles = new List<FarmTile>();
+        public List<FarmTile> tiles = new List<FarmTile>();
         
         void Start()
         {

@@ -396,6 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6adc9077352a6234bb5083050952bb3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadScene
+  funds: 0
 --- !u!4 &621266011
 Transform:
   m_ObjectHideFlags: 0

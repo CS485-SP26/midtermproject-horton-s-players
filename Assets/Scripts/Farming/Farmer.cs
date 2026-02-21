@@ -15,10 +15,14 @@ namespace Farming
         [SerializeField] private float waterLevel = 1f;
         [SerializeField] private float waterPerUse = 0.1f;
         AnimatedController animatedController;
+        private WinCondition winCondition;
+
         void Start()
         {
             animatedController = GetComponent<AnimatedController>();
+            winCondition = FindAnyObjectByType<WinCondition>();
             Debug.Assert(animatedController, "Farmer requires an animatedController");
+            Debug.Assert(winCondition, "Farmer requires a wincondition");
             Debug.Assert(waterCan, "Farmer requires a waterCan");
             Debug.Assert(Hoe, "Farmer requires a Hoe");
             Debug.Assert(waterLevelUI, "Farmer requires a water level");
@@ -63,6 +67,12 @@ namespace Farming
                         break;
                     default: break;
                 }
+                winCondition.countWateredTiles();
+                UpdateFundsDisplay();
             }
+        void UpdateFundsDisplay()
+        {
+            fundsText.text = "Funds: $" + GameManager.Instance.getFunds();
+        }
     }
 }

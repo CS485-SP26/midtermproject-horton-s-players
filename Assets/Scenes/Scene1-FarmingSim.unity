@@ -1950,7 +1950,7 @@ MonoBehaviour:
   waterCan: {fileID: 646000158}
   waterLevelUI: {fileID: 876433568}
   fundsText: {fileID: 1453413617}
-  waterLevel: 1
+  waterLevel: 2
   waterPerUse: 0.1
 --- !u!1 &315949135
 GameObject:
@@ -9476,6 +9476,23 @@ MonoBehaviour:
   rows: 4
   cols: 4
   tileGap: 0.1
+  tiles:
+  - {fileID: 575667305}
+  - {fileID: 621895050}
+  - {fileID: 1259173394}
+  - {fileID: 2096229166}
+  - {fileID: 1697533642}
+  - {fileID: 749749633}
+  - {fileID: 400642160}
+  - {fileID: 1403734915}
+  - {fileID: 413481108}
+  - {fileID: 818270249}
+  - {fileID: 383629374}
+  - {fileID: 1347809120}
+  - {fileID: 593384251}
+  - {fileID: 1381054961}
+  - {fileID: 2056574612}
+  - {fileID: 1393355531}
 --- !u!4 &1173184620 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2015955068725829075, guid: 9520bada6c169bd499d4f8d942ca249e, type: 3}
@@ -14228,7 +14245,7 @@ GameObject:
   - component: {fileID: 1658352101}
   - component: {fileID: 1658352100}
   m_Layer: 5
-  m_Name: Instruction
+  m_Name: Congrats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14273,7 +14290,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'TODO: Give the player funds for watering!'
+  m_text: CongratsText
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

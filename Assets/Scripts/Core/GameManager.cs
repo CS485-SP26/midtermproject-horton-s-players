@@ -22,18 +22,16 @@ public class GameManager : MonoBehaviour
         }
         // Do not make a set! READ ONLY!
     }
-
-    // TODO: Refator into a struct/data class
-    int funds = 0;
-    public void AddFunds(int funds)
-    {
-        this.funds = funds;
-    }
+    public int funds = 0;
+    
+    public void AddFunds(int amnt)
+        {
+            this.funds += amnt;
+        }
     public int getFunds()
-    {
-        return this.funds;
-    }
-
+        {
+            return this.funds;
+        }
     void Awake()
     {
         if (GameManager.instance == null)
