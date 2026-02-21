@@ -31,6 +31,7 @@ namespace Character
         public void OnJump(InputValue inputValue)
         {
             moveController.Jump();
+            Debug.Log("Jump Pressed");
         }
 
         public void OnInteract(InputValue value)
