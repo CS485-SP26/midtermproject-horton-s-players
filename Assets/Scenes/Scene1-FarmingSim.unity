@@ -4882,7 +4882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Environment.DayController
   sunLight: {fileID: 410087040}
   dayLabel: {fileID: 555931015}
-  dayLengthSeconds: 60
+  dayLengthSeconds: 1
   dayProgressSeconds: 0
   currentDay: 1
   dayPassedEvent:
@@ -8920,11 +8920,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Environment.StoreSceneTrigger
   storeSceneName: Scene2-Store
-  requiredStaySeconds: 2
+  triggerDelaySeconds: 2
   oneTimeTrigger: 1
-  showWhiteCircle: 1
-  circleSegments: 64
-  circleLineWidth: 0.06
+  autoHandlePlayerReturnPosition: 1
+  savePlayerPositionBeforeLoad: 1
+  restoreSavedPlayerPositionOnLoad: 0
 --- !u!120 &1009990528
 LineRenderer:
   serializedVersion: 3

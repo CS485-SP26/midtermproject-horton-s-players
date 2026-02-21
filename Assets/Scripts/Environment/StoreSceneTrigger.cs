@@ -1,87 +1,52 @@
 using Character;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Environment
 {
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(SphereCollider))]
-    [RequireComponent(typeof(LineRenderer))]
+    [RequireComponent(typeof(Collider))]
     public class StoreSceneTrigger : MonoBehaviour
     {
         [SerializeField] private string storeSceneName = "Store";
-        [SerializeField] private float requiredStaySeconds = 2f;
+        [SerializeField] private float triggerDelaySeconds = 2f;
         [SerializeField] private bool oneTimeTrigger = true;
-
-        [Header("Circle Visual")]
-        [SerializeField] private bool showWhiteCircle = true;
-        [SerializeField] private int circleSegments = 64;
-        [SerializeField] private float circleLineWidth = 0.06f;
+        [SerializeField] private bool autoHandlePlayerReturnPosition = true;
+        [SerializeField] private bool savePlayerPositionBeforeLoad = true;
+        [SerializeField] private bool restoreSavedPlayerPositionOnLoad = false;
 
         private bool hasTriggered = false;
-        private bool playerInside = false;
-        private float stayTimer = 0f;
-        private SphereCollider triggerCollider;
-        private LineRenderer circleRenderer;
+        private float playerStayTimer = 0f;
+        private PlayerController trackedPlayer = null;
 
         void Reset()
         {
-            triggerCollider = GetComponent<SphereCollider>();
-            if (triggerCollider != null)
+            Collider sceneTrigger = GetComponent<Collider>();
+            if (sceneTrigger != null)
             {
-                triggerCollider.isTrigger = true;
+                sceneTrigger.isTrigger = true;
             }
-
-            circleRenderer = GetComponent<LineRenderer>();
-            SetupCircleRenderer();
-            DrawCircle();
         }
 
         void Awake()
         {
-            triggerCollider = GetComponent<SphereCollider>();
-            circleRenderer = GetComponent<LineRenderer>();
-
-            if (triggerCollider != null && !triggerCollider.isTrigger)
+            Collider sceneTrigger = GetComponent<Collider>();
+            if (sceneTrigger != null && !sceneTrigger.isTrigger)
             {
-                triggerCollider.isTrigger = true;
+                sceneTrigger.isTrigger = true;
                 Debug.LogWarning("StoreSceneTrigger requires trigger mode. Collider was automatically set to Is Trigger.");
             }
-
-            SetupCircleRenderer();
-            DrawCircle();
         }
 
         void OnTriggerEnter(Collider other)
-        {
-            if (!IsPlayer(other))
-            {
-                return;
-            }
-
-            playerInside = true;
-            stayTimer = 0f;
-        }
-
-        void OnTriggerStay(Collider other)
         {
             if (oneTimeTrigger && hasTriggered)
             {
                 return;
             }
 
-            if (!IsPlayer(other))
-            {
-                return;
-            }
-
-            if (!playerInside)
-            {
-                playerInside = true;
-                stayTimer = 0f;
-            }
-
-            stayTimer += Time.deltaTime;
-            if (stayTimer < requiredStaySeconds)
+            PlayerController player = GetPlayerController(other);
+            if (player == null)
             {
                 return;
             }
@@ -92,97 +57,119 @@ namespace Environment
                 return;
             }
 
-            hasTriggered = true;
-            GameManager.Instance.LoadScenebyName(storeSceneName);
+            trackedPlayer = player;
+            playerStayTimer = 0f;
+        }
+
+        void OnTriggerStay(Collider other)
+        {
+            if (oneTimeTrigger && hasTriggered)
+            {
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(storeSceneName))
+            {
+                return;
+            }
+
+            PlayerController player = GetPlayerController(other);
+            if (player == null)
+            {
+                return;
+            }
+
+            if (trackedPlayer != player)
+            {
+                trackedPlayer = player;
+                playerStayTimer = 0f;
+            }
+
+            playerStayTimer += Time.deltaTime;
+            if (playerStayTimer < triggerDelaySeconds)
+            {
+                return;
+            }
+
+            LoadStoreScene(player.transform);
         }
 
         void OnTriggerExit(Collider other)
         {
-            if (!IsPlayer(other))
+            PlayerController player = GetPlayerController(other);
+            if (player == null || player != trackedPlayer)
             {
                 return;
             }
 
-            playerInside = false;
-            stayTimer = 0f;
+            trackedPlayer = null;
+            playerStayTimer = 0f;
         }
 
-        void OnValidate()
+        void LoadStoreScene(Transform playerTransform)
         {
-            requiredStaySeconds = Mathf.Max(0f, requiredStaySeconds);
-            circleSegments = Mathf.Max(8, circleSegments);
-            circleLineWidth = Mathf.Max(0.005f, circleLineWidth);
-
-            triggerCollider = GetComponent<SphereCollider>();
-            circleRenderer = GetComponent<LineRenderer>();
-
-            if (triggerCollider != null)
-            {
-                triggerCollider.isTrigger = true;
-            }
-
-            SetupCircleRenderer();
-            DrawCircle();
-        }
-
-        void SetupCircleRenderer()
-        {
-            if (circleRenderer == null)
+            if (oneTimeTrigger && hasTriggered)
             {
                 return;
             }
 
-            circleRenderer.enabled = showWhiteCircle;
-            circleRenderer.useWorldSpace = false;
-            circleRenderer.loop = true;
-            circleRenderer.positionCount = circleSegments;
-            circleRenderer.widthMultiplier = circleLineWidth;
-            circleRenderer.startColor = Color.white;
-            circleRenderer.endColor = Color.white;
+            bool shouldSavePlayerPosition = savePlayerPositionBeforeLoad;
+            bool shouldRestorePlayerPosition = restoreSavedPlayerPositionOnLoad;
 
-            if (circleRenderer.sharedMaterial == null)
+            if (autoHandlePlayerReturnPosition)
             {
-                Shader spriteShader = Shader.Find("Sprites/Default");
-                if (spriteShader != null)
+                string activeSceneName = SceneManager.GetActiveScene().name;
+                bool isEnteringTargetScene = activeSceneName != storeSceneName;
+                shouldSavePlayerPosition = isEnteringTargetScene;
+                shouldRestorePlayerPosition = !isEnteringTargetScene;
+            }
+
+            if (shouldSavePlayerPosition)
+            {
+                if (playerTransform != null)
                 {
-                    circleRenderer.sharedMaterial = new Material(spriteShader);
+                    GameManager.Instance.SavePlayerPosition(playerTransform.position);
                 }
             }
-        }
 
-        void DrawCircle()
-        {
-            if (circleRenderer == null || triggerCollider == null)
+            if (shouldRestorePlayerPosition)
             {
-                return;
+                GameManager.Instance.RestoreSavedPlayerPositionOnNextSceneLoad();
             }
 
-            if (!showWhiteCircle)
-            {
-                circleRenderer.enabled = false;
-                return;
-            }
-
-            circleRenderer.enabled = true;
-            circleRenderer.positionCount = circleSegments;
-
-            float radius = triggerCollider.radius;
-            Vector3 offset = triggerCollider.center;
-
-            for (int i = 0; i < circleSegments; i++)
-            {
-                float t = (float)i / circleSegments;
-                float angle = t * Mathf.PI * 2f;
-                float x = Mathf.Cos(angle) * radius;
-                float z = Mathf.Sin(angle) * radius;
-                circleRenderer.SetPosition(i, offset + new Vector3(x, 0.02f, z));
-            }
+            hasTriggered = true;
+            trackedPlayer = null;
+            playerStayTimer = 0f;
+            GameManager.Instance.LoadScenebyName(storeSceneName);
         }
 
         bool IsPlayer(Collider other)
         {
             return other.GetComponent<PlayerController>() != null
                 || other.GetComponentInParent<PlayerController>() != null;
+        }
+
+        PlayerController GetPlayerController(Collider other)
+        {
+            PlayerController player = other.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                return player;
+            }
+
+            return other.GetComponentInParent<PlayerController>();
+        }
+
+        Transform GetPlayerTransform(Collider other)
+        {
+            PlayerController player = other.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                return player.transform;
+            }
+
+            player = other.GetComponentInParent<PlayerController>();
+            return player != null ? player.transform : null;
         }
     }
 }

@@ -22,6 +22,19 @@ namespace Environment
 
         public UnityEvent dayPassedEvent = new UnityEvent(); // Invoke() at end of day
 
+        void Start()
+        {
+            currentDay = Mathf.Max(1, GameManager.Instance.GetSavedDayCount());
+            GameManager.Instance.SaveDayCount(currentDay);
+
+            if (dayLabel)
+            {
+                dayLabel.SetText("Days: {0}", currentDay);
+            }
+
+            UpdateVisuals();
+        }
+
         public void AdvanceDay()
         {
             Debug.Assert(sunLight, "DayController requires a 'Sun'");
@@ -38,6 +51,8 @@ namespace Environment
                 // Do this instead
                 dayLabel.SetText("Days: {0}", currentDay);                
             }
+
+            GameManager.Instance.SaveDayCount(currentDay);
 
             dayPassedEvent.Invoke(); //make announcement to all listeners
         }
