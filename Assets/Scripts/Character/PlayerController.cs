@@ -25,6 +25,7 @@ namespace Character
         public void OnMove(InputValue inputValue)
         {
             Vector2 inputVector = inputValue.Get<Vector2>();
+            farmer.SetIsMoving(inputVector.sqrMagnitude > 0.001f);
             moveController.Move(inputVector);
         }
 
