@@ -26,6 +26,11 @@ namespace Farming
         private int daysSinceLastInteraction = 0;
         public FarmTile.Condition GetCondition { get { return tileCondition; } } // TODO: Consider what the set would do?
 
+        void Awake()
+        {
+            tileRenderer = GetComponent<MeshRenderer>();
+        }
+
         void Start()
         {
             tileRenderer = GetComponent<MeshRenderer>();
@@ -64,6 +69,7 @@ namespace Farming
 
         private void UpdateVisual()
         {
+            if(tileRenderer == null) tileRenderer = GetComponent<MeshRenderer>();
             if(tileRenderer == null) return;
             switch(tileCondition)
             {
@@ -71,6 +77,13 @@ namespace Farming
                 case FarmTile.Condition.Tilled: tileRenderer.material = tilledMaterial; break;
                 case FarmTile.Condition.Watered: tileRenderer.material = wateredMaterial; break;
             }
+        }
+
+        public void SetCondition(Condition condition)
+        {
+            tileCondition = condition;
+            daysSinceLastInteraction = 0;
+            UpdateVisual();
         }
 
         public void SetHighlight(bool active)

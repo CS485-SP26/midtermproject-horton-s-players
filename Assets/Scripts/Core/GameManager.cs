@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Character;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     private bool restorePlayerPositionOnNextLoad = false;
     private int savedDayCount = 1;
     private bool isSceneProxy = false;
+    private readonly Dictionary<string, int[]> savedFarmTileStates = new Dictionary<string, int[]>();
     
     public void AddFunds(int amnt)
         {
@@ -182,5 +184,46 @@ public class GameManager : MonoBehaviour
         }
 
         return savedDayCount;
+    }
+
+    public void SaveFarmTileStates(string key, int[] states)
+    {
+        if (isSceneProxy && instance != null && instance != this)
+        {
+            instance.SaveFarmTileStates(key, states);
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(key) || states == null)
+        {
+            return;
+        }
+
+        int[] stateCopy = new int[states.Length];
+        states.CopyTo(stateCopy, 0);
+        savedFarmTileStates[key] = stateCopy;
+    }
+
+    public bool TryGetFarmTileStates(string key, out int[] states)
+    {
+        if (isSceneProxy && instance != null && instance != this)
+        {
+            return instance.TryGetFarmTileStates(key, out states);
+        }
+
+        states = null;
+        if (string.IsNullOrWhiteSpace(key))
+        {
+            return false;
+        }
+
+        if (!savedFarmTileStates.TryGetValue(key, out int[] savedStates) || savedStates == null)
+        {
+            return false;
+        }
+
+        states = new int[savedStates.Length];
+        savedStates.CopyTo(states, 0);
+        return true;
     }
 }
