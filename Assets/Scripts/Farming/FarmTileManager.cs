@@ -9,6 +9,7 @@ namespace Farming
     public class FarmTileManager:MonoBehaviour
     {
         [SerializeField] private GameObject farmTilePrefab;
+
         [SerializeField] DayController dayController;
         [SerializeField] private int rows = 4;
         [SerializeField] private int cols = 4;
