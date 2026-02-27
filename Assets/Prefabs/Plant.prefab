@@ -133,6 +133,7 @@ MonoBehaviour:
   plantPrefabPlanted: {fileID: 7208655301238999229}
   plantPrefabGrowing: {fileID: 1401834817013725670}
   plantPrefabMature: {fileID: 4971775544041762718}
+  plantPrefabWithered: {fileID: 7208655301238999229}
 --- !u!1001 &4054499787041593450
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -97,6 +97,43 @@ namespace Farming
             waterAudio?.Play();
         }
 
+        public bool WaterPlant()
+        {
+            if (tileCondition != Condition.Planted || !plantedPlant)
+            {
+                return false;
+            }
+
+            bool acceptedWater = plantedPlant.Water();
+            if (acceptedWater)
+            {
+                waterAudio?.Play();
+            }
+
+            return acceptedWater;
+        }
+
+        public bool HasWitheredPlant()
+        {
+            return tileCondition == Condition.Planted && plantedPlant && plantedPlant.IsWithered;
+        }
+
+        public bool TillWitheredPlantToDirt()
+        {
+            if (!HasWitheredPlant())
+            {
+                return false;
+            }
+
+            Destroy(plantedPlant.gameObject);
+            plantedPlant = null;
+            tileCondition = Condition.Tilled;
+            daysSinceLastInteraction = 0;
+            UpdateVisual();
+            tillAudio?.Play();
+            return true;
+        }
+
         private void UpdateVisual()
         {
             if(tileRenderer == null) tileRenderer = GetComponent<MeshRenderer>();
@@ -126,6 +163,7 @@ namespace Farming
             plantedPlant = plant;
             tileCondition = Condition.Planted;
             daysSinceLastInteraction = 0;
+            plantedPlant?.Water();
             UpdateVisual();
         }
 
@@ -149,6 +187,12 @@ namespace Farming
         {
             if (tileCondition == FarmTile.Condition.Planted)
             {
+                if (!plantedPlant)
+                {
+                    tileCondition = FarmTile.Condition.Tilled;
+                    UpdateVisual();
+                    return;
+                }
                 UpdateVisual();
                 return;
             }

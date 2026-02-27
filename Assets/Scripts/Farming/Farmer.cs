@@ -111,6 +111,26 @@ namespace Farming
                         tile.Interact();
                         TouchActionTime();
                         break;
+                    case FarmTile.Condition.Planted:
+                        if (tile.HasWitheredPlant())
+                        {
+                            if (!TrySpendEnergy(energyPerDig)) return;
+                            animatedController.SetTrigger("Till");
+                            Debug.Log("SetTrigger TILL");
+                            tile.TillWitheredPlantToDirt();
+                        }
+                        else if (waterLevel >= waterPerUse && TrySpendEnergy(energyPerWaterUse))
+                        {
+                            animatedController.SetTrigger("Water");
+                            Debug.Log("SetTrigger WATER");
+                            if (tile.WaterPlant())
+                            {
+                                waterLevel -= waterPerUse;
+                                TouchActionTime();
+                                RefreshResourceUI();
+                            }
+                        }
+                        break;
                     default: break;
                 }
                 winCondition.countWateredTiles();
