@@ -2329,6 +2329,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTile
   tileCondition: 0
+  plantedPlant: {fileID: 0}
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
@@ -3019,6 +3020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTile
   tileCondition: 0
+  plantedPlant: {fileID: 0}
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
@@ -3576,6 +3578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTile
   tileCondition: 0
+  plantedPlant: {fileID: 0}
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
@@ -5128,6 +5131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTile
   tileCondition: 0
+  plantedPlant: {fileID: 0}
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
@@ -5604,6 +5608,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTile
   tileCondition: 0
+  plantedPlant: {fileID: 0}
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
@@ -6075,6 +6080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTile
   tileCondition: 0
+  plantedPlant: {fileID: 0}
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
@@ -6908,6 +6914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTile
   tileCondition: 0
+  plantedPlant: {fileID: 0}
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
@@ -7562,6 +7569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTile
   tileCondition: 0
+  plantedPlant: {fileID: 0}
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
@@ -9905,6 +9913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTIleManager
   farmTilePrefab: {fileID: 8145061694655009692, guid: d824016b64cc6f448842d675ff08ed24, type: 3}
+  plantManager: {fileID: 1476465278}
   dayController: {fileID: 1248295910}
   rows: 4
   cols: 4
@@ -10195,7 +10204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DayNightControl
   sunLight: {fileID: 410087040}
   dayLabel: {fileID: 555931015}
-  dayLengthSeconds: 60
+  dayLengthSeconds: 2
   dayProgressSeconds: 0
   currentDay: 1
   dayPassedEvent:
@@ -10272,6 +10281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTile
   tileCondition: 0
+  plantedPlant: {fileID: 0}
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
@@ -11336,6 +11346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTile
   tileCondition: 0
+  plantedPlant: {fileID: 0}
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
@@ -11991,6 +12002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTile
   tileCondition: 0
+  plantedPlant: {fileID: 0}
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
@@ -12421,6 +12433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTile
   tileCondition: 0
+  plantedPlant: {fileID: 0}
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
@@ -12851,6 +12864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTile
   tileCondition: 0
+  plantedPlant: {fileID: 0}
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
@@ -13632,6 +13646,53 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!1 &1476465277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1476465279}
+  - component: {fileID: 1476465278}
+  m_Layer: 0
+  m_Name: PlantManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1476465278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476465277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572d3eaa58e154b2c89d9410f8cde560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Farming.PlantManager
+  plantPrefab: {fileID: 4044778614881427630, guid: 7ee826e7d131aab42bff2044c711ca38, type: 3}
+  dayController: {fileID: 1248295910}
+  plantSpawnOffset: {x: 0, y: 0.1, z: 0}
+--- !u!4 &1476465279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1476465277}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.24177, y: -0, z: 8.34917}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1477722996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15278,6 +15339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTile
   tileCondition: 0
+  plantedPlant: {fileID: 0}
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
@@ -17611,6 +17673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTile
   tileCondition: 0
+  plantedPlant: {fileID: 0}
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
@@ -18153,6 +18216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FarmTile
   tileCondition: 0
+  plantedPlant: {fileID: 0}
   grassMaterial: {fileID: 2100000, guid: 45eb7efec0c8f504285b382733758e52, type: 2}
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
@@ -18788,3 +18852,4 @@ SceneRoots:
   - {fileID: 1832991199}
   - {fileID: 571724848}
   - {fileID: 985255214}
+  - {fileID: 1476465279}
