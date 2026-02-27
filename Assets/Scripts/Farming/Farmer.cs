@@ -107,6 +107,10 @@ namespace Farming
 
                         }
                         break;
+                    case FarmTile.Condition.Watered:
+                        tile.Interact();
+                        TouchActionTime();
+                        break;
                     default: break;
                 }
                 winCondition.countWateredTiles();

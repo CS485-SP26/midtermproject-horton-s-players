@@ -1,31 +1,34 @@
 using UnityEngine;
 
-public class Plant : MonoBehaviour
+namespace Farming
 {
-    public enum Condition { Planted, Growing, Mature }
-
-    [SerializeField] private Condition plantCondition = Condition.Planted;
-    [SerializeField] private GameObject plantPrefabPlanted;
-    [SerializeField] private GameObject plantPrefabGrowing;
-    [SerializeField] private GameObject plantPrefabMature;
-    private int daysSinceLastInteraction = 0;
-    public Plant.Condition GetCondition { get { return plantCondition; } }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class Plant : MonoBehaviour
     {
-        Debug.Assert(plantPrefabPlanted, "Plant needs a PrefabPlanted");
-        Debug.Assert(plantPrefabGrowing, "Plant needs a PrefabGrowing");
-        Debug.Assert(plantPrefabGrowing, "Plant needs a PrefabMature");
-        plantPrefabPlanted.SetActive(false); // Start everything off. Planted state activated by interacting with a wet tile
-        plantPrefabGrowing.SetActive(false);
-        plantPrefabMature.SetActive(false);
-    }
+        public enum Condition { Planted, Growing, Mature }
 
-    private void UpdateVisual()
+        [SerializeField] private Condition plantCondition = Condition.Planted;
+        [SerializeField] private GameObject plantPrefabPlanted;
+        [SerializeField] private GameObject plantPrefabGrowing;
+        [SerializeField] private GameObject plantPrefabMature;
+        private int daysSinceLastInteraction = 0;
+        public Plant.Condition GetCondition { get { return plantCondition; } }
+
+        void Start()
         {
-            switch (plantCondition) // Logic: Makes sure only the prefab for the plant's growth state is active. Can probably be optimized but it's all here for testing purposes.
+            Debug.Assert(plantPrefabPlanted, "Plant needs a PrefabPlanted");
+            Debug.Assert(plantPrefabGrowing, "Plant needs a PrefabGrowing");
+            Debug.Assert(plantPrefabMature, "Plant needs a PrefabMature");
+            plantPrefabPlanted.SetActive(false);
+            plantPrefabGrowing.SetActive(false);
+            plantPrefabMature.SetActive(false);
+            UpdateVisual();
+        }
+
+        private void UpdateVisual()
+        {
+            switch (plantCondition)
             {
-                case Plant.Condition.Planted: 
+                case Plant.Condition.Planted:
                     plantPrefabPlanted.SetActive(true);
                     plantPrefabGrowing.SetActive(false);
                     plantPrefabMature.SetActive(false);
@@ -42,27 +45,23 @@ public class Plant : MonoBehaviour
                     break;
             }
         }
-    
-    public void SetCondition(Condition condition)
+
+        public void SetCondition(Condition condition)
         {
             plantCondition = condition;
             daysSinceLastInteraction = 0;
             UpdateVisual();
         }
-    public void Growth()
+
+        public void Growth()
         {
             daysSinceLastInteraction++;
-            if(daysSinceLastInteraction >= 2)
+            if (daysSinceLastInteraction >= 2)
             {
-                if(plantCondition == Plant.Condition.Planted) plantCondition = Plant.Condition.Growing;
-                else if(plantCondition == Plant.Condition.Growing) plantCondition = Plant.Condition.Mature;
+                if (plantCondition == Plant.Condition.Planted) plantCondition = Plant.Condition.Growing;
+                else if (plantCondition == Plant.Condition.Growing) plantCondition = Plant.Condition.Mature;
             }
             UpdateVisual();
         }
-
-    // Update is called once per frame
-    void Update()
-    {
-        UpdateVisual(); // Testing purposes
     }
 }

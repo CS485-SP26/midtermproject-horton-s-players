@@ -9,6 +9,7 @@ namespace Farming
     public class FarmTileManager:MonoBehaviour
     {
         [SerializeField] private GameObject farmTilePrefab;
+        [SerializeField] private PlantManager plantManager;
 
         [SerializeField] DayController dayController;
         [SerializeField] private int rows = 4;
@@ -21,9 +22,14 @@ namespace Farming
         {
             Debug.Assert(farmTilePrefab, "FarmTileManager requires a farmTilePrefab");
             Debug.Assert(dayController, "FarmTileManager requires a dayController");
+            if (!plantManager)
+            {
+                plantManager = FindAnyObjectByType<PlantManager>();
+            }
             RebuildTilesListFromChildren();
             persistenceKey = BuildPersistenceKey();
             LoadTileStates();
+            RegisterPlantedTiles();
         }
 
         void OnEnable()
@@ -141,6 +147,36 @@ namespace Farming
             {
                 FarmTile.Condition restoredCondition = (FarmTile.Condition)states[i];
                 tiles[i].SetCondition(restoredCondition);
+            }
+        }
+
+        private void RegisterPlantedTiles()
+        {
+            if (!plantManager)
+            {
+                return;
+            }
+
+            foreach (FarmTile tile in tiles)
+            {
+                if (!tile || tile.GetCondition != FarmTile.Condition.Planted)
+                {
+                    continue;
+                }
+
+                if (!tile.PlantedPlant)
+                {
+                    Plant existingPlant = tile.GetComponentInChildren<Plant>();
+                    if (existingPlant)
+                    {
+                        tile.SetPlantedPlant(existingPlant);
+                    }
+                }
+
+                if (tile.PlantedPlant)
+                {
+                    plantManager.RegisterPlant(tile.PlantedPlant);
+                }
             }
         }
 
