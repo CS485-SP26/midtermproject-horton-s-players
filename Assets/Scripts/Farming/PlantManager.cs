@@ -114,6 +114,11 @@ namespace Farming
                 }
 
                 plant.Growth();
+                FarmTile tile = plant.GetComponentInParent<FarmTile>();
+                if (tile)
+                {
+                    tile.UpdateCondition();
+                }
             }
         }
     }

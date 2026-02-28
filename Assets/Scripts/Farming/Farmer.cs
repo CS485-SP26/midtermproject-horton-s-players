@@ -131,6 +131,13 @@ namespace Farming
                             }
                         }
                         break;
+                    case FarmTile.Condition.Harvestable:
+                        if (!TrySpendEnergy(energyPerDig)) return;
+                        //TODO: animatedController.SetTrigger("Harvest")
+                        Debug.Log("SetTrigger HARVEST");
+                        tile.Interact();
+                        TouchActionTime();
+                        break;
                     default: break;
                 }
                 winCondition.countWateredTiles();

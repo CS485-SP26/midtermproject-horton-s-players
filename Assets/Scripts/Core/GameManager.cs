@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public int funds = 0;
     
     public int seeds = 0;
+
+    public int tomatoes = 0;
     private Vector3 savedPlayerPosition;
     private bool hasSavedPlayerPosition = false;
     private bool restorePlayerPositionOnNextLoad = false;
@@ -51,6 +53,14 @@ public class GameManager : MonoBehaviour
         {
         return seeds;
         }
+    public void AddTomatoes(int amnt)
+    {
+        tomatoes += amnt;
+    }
+    public int getTomatoes()
+    {
+        return tomatoes;
+    }
     void Awake()
     {
         if (GameManager.instance == null)

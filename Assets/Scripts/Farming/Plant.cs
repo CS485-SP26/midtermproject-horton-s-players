@@ -17,6 +17,8 @@ namespace Farming
         public Plant.Condition GetCondition { get { return plantCondition; } }
         public bool IsWithered { get { return plantCondition == Condition.Withered; } }
 
+        public bool IsHarvestable { get { return plantCondition == Condition.Mature; } }
+
         void Start()
         {
             Debug.Assert(plantPrefabPlanted, "Plant needs a PrefabPlanted");

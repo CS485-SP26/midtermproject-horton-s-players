@@ -6,7 +6,7 @@ namespace Farming
 {
     public class FarmTile : MonoBehaviour
     {
-        public enum Condition { Grass, Tilled, Watered, Planted }
+        public enum Condition { Grass, Tilled, Watered, Planted, Harvestable }
 
         [SerializeField] private Condition tileCondition = Condition.Grass; 
         [SerializeField] private Plant plantedPlant;
@@ -52,6 +52,7 @@ namespace Farming
                 case FarmTile.Condition.Tilled: Water(); break;
                 case FarmTile.Condition.Watered: Plant(); break;
                 case FarmTile.Condition.Planted: break;
+                case FarmTile.Condition.Harvestable: Harvest(); break;
             }
             daysSinceLastInteraction = 0;
         }
@@ -61,6 +62,12 @@ namespace Farming
             if (tileCondition != FarmTile.Condition.Watered)
             {
                 Debug.Log("Planting failed: tile is not watered.", this);
+                return false;
+            }
+
+            if (GameManager.Instance.getSeeds() <= 0)
+            {
+                Debug.Log("Planting Failed: no seeds!", this);
                 return false;
             }
 
@@ -79,6 +86,10 @@ namespace Farming
             }
 
             bool planted = PlantManager.Instance.PlantOnTile(this);
+            if(planted)
+            {
+                GameManager.Instance.AddSeeds(-1); // decrement seed count on planting
+            }
             Debug.Log(planted ? "Planting succeeded." : "Planting failed.", this);
             return planted;
         }
@@ -113,6 +124,22 @@ namespace Farming
             return acceptedWater;
         }
 
+        public void Harvest()
+        {
+            if (tileCondition != Condition.Harvestable || !plantedPlant) // return if it cant be harvested
+            {
+                return;
+            }
+            Destroy(plantedPlant.gameObject); // destroy the plant
+            plantedPlant = null; // set to null
+
+            tileCondition = Condition.Tilled; // return the state of the tile to Tilled
+            daysSinceLastInteraction = 0; // reset daysSinceLastInteraction
+            UpdateVisual();
+
+            GameManager.Instance.AddTomatoes(1); // increment tomato count (changing this later if we decide to add an inventory)
+        }
+
         public bool HasWitheredPlant()
         {
             return tileCondition == Condition.Planted && plantedPlant && plantedPlant.IsWithered;
@@ -144,6 +171,7 @@ namespace Farming
                 case FarmTile.Condition.Tilled: tileRenderer.material = tilledMaterial; break;
                 case FarmTile.Condition.Watered: tileRenderer.material = wateredMaterial; break;
                 case FarmTile.Condition.Planted: tileRenderer.material = wateredMaterial; break;
+                case FarmTile.Condition.Harvestable: tileRenderer.material = wateredMaterial; break;
             }
         }
 
@@ -157,7 +185,37 @@ namespace Farming
             daysSinceLastInteraction = 0;
             UpdateVisual();
         }
-
+        public void UpdateCondition()
+        {
+            if (!plantedPlant)
+            {
+                return;
+            }
+            else {
+                Condition previousTileCondition = tileCondition;
+                switch (plantedPlant.GetCondition)
+                {
+                    case Farming.Plant.Condition.Planted:
+                        tileCondition = Condition.Planted;
+                        break;
+                    case Farming.Plant.Condition.Growing:
+                        tileCondition = Condition.Planted;
+                        break;
+                    case Farming.Plant.Condition.Mature:
+                        tileCondition = Condition.Harvestable;
+                        break;
+                    case Farming.Plant.Condition.Withered:
+                        tileCondition = Condition.Planted;
+                        break;
+                }
+                if (previousTileCondition != tileCondition)
+                {
+                    Debug.Log("Tile " + name + ": Plant state is now " + plantedPlant.GetCondition + ", tile condition = " + tileCondition);
+                } 
+                daysSinceLastInteraction = 0;
+                UpdateVisual();
+            }
+        }
         public void SetPlantedPlant(Plant plant)
         {
             plantedPlant = plant;
@@ -192,8 +250,9 @@ namespace Farming
                     tileCondition = FarmTile.Condition.Tilled;
                     UpdateVisual();
                     return;
-                }
-                UpdateVisual();
+                } 
+                UpdateCondition();
+                //UpdateVisual();
                 return;
             }
 

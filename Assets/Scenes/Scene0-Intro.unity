@@ -397,7 +397,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadScene
   funds: 100
-  seeds: 0
+  seeds: 1
+  tomatoes: 0
 --- !u!4 &621266011
 Transform:
   m_ObjectHideFlags: 0
