@@ -84,6 +84,8 @@ namespace Farming
             }
 
             Plant plant = Instantiate(plantPrefab, tile.transform.position + plantSpawnOffset, Quaternion.identity, tile.transform);
+            Vector3  s = tile.transform.lossyScale;
+            plant.transform.localScale = new Vector3(1/s.x, 1/s.y, 1/s.z);
             RegisterPlant(plant);
             tile.SetPlantedPlant(plant);
             Debug.Log("PlantOnTile succeeded: spawned new plant.", tile);

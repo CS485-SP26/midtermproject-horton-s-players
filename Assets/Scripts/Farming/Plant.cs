@@ -25,10 +25,13 @@ namespace Farming
             plantPrefabPlanted.SetActive(false);
             plantPrefabGrowing.SetActive(false);
             plantPrefabMature.SetActive(false);
+            plantPrefabWithered.SetActive(false);
+            /*
             if (plantPrefabWithered)
             {
                 plantPrefabWithered.SetActive(false);
             }
+            */
             UpdateVisual();
         }
 
@@ -40,24 +43,26 @@ namespace Farming
                     plantPrefabPlanted.SetActive(true);
                     plantPrefabGrowing.SetActive(false);
                     plantPrefabMature.SetActive(false);
-                    if (plantPrefabWithered) plantPrefabWithered.SetActive(false);
+                    plantPrefabWithered.SetActive(false);
                     break;
                 case Plant.Condition.Growing:
                     plantPrefabPlanted.SetActive(false);
                     plantPrefabGrowing.SetActive(true);
                     plantPrefabMature.SetActive(false);
-                    if (plantPrefabWithered) plantPrefabWithered.SetActive(false);
+                    plantPrefabWithered.SetActive(false);
                     break;
                 case Plant.Condition.Mature:
                     plantPrefabPlanted.SetActive(false);
                     plantPrefabGrowing.SetActive(false);
                     plantPrefabMature.SetActive(true);
-                    if (plantPrefabWithered) plantPrefabWithered.SetActive(false);
+                    plantPrefabWithered.SetActive(false);
                     break;
                 case Plant.Condition.Withered:
                     plantPrefabPlanted.SetActive(false);
                     plantPrefabGrowing.SetActive(false);
                     plantPrefabMature.SetActive(false);
+                    plantPrefabWithered.SetActive(true);
+                    /*
                     if (plantPrefabWithered)
                     {
                         plantPrefabWithered.SetActive(true);
@@ -66,6 +71,7 @@ namespace Farming
                     {
                         plantPrefabPlanted.SetActive(true);
                     }
+                    */
                     break;
             }
         }
