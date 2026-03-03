@@ -10,6 +10,7 @@ namespace Farming
 
         [SerializeField] private Condition tileCondition = Condition.Grass; 
         [SerializeField] private Plant plantedPlant;
+        private bool isSoilWatered;
 
         [Header("Visuals")]
         [SerializeField] private Material grassMaterial;
@@ -19,6 +20,7 @@ namespace Farming
 
         [Header("Audio")]
         [SerializeField] private AudioSource stepAudio;
+        [SerializeField] private AudioSource harvestAudio;
         [SerializeField] private AudioSource tillAudio;
         [SerializeField] private AudioSource waterAudio;
 
@@ -51,7 +53,7 @@ namespace Farming
                 case FarmTile.Condition.Grass: Till(); break;
                 case FarmTile.Condition.Tilled: Water(); break;
                 case FarmTile.Condition.Watered: Plant(); break;
-                case FarmTile.Condition.Planted: break;
+                case FarmTile.Condition.Planted: WaterPlant(); break; 
                 case FarmTile.Condition.Harvestable: Harvest(); break;
             }
             daysSinceLastInteraction = 0;
@@ -103,7 +105,8 @@ namespace Farming
 
         public void Water()
         {
-            tileCondition = FarmTile.Condition.Watered;
+            tileCondition = FarmTile.Condition.Watered; 
+            isSoilWatered = true;
             UpdateVisual();
             waterAudio?.Play();
         }
@@ -120,7 +123,8 @@ namespace Farming
             {
                 waterAudio?.Play();
             }
-
+            isSoilWatered = true;
+            UpdateVisual();
             return acceptedWater;
         }
 
@@ -131,6 +135,7 @@ namespace Farming
                 return;
             }
             Destroy(plantedPlant.gameObject); // destroy the plant
+            harvestAudio?.Play();
             plantedPlant = null; // set to null
 
             tileCondition = Condition.Tilled; // return the state of the tile to Tilled
@@ -170,7 +175,7 @@ namespace Farming
                 case FarmTile.Condition.Grass: tileRenderer.material = grassMaterial; break;
                 case FarmTile.Condition.Tilled: tileRenderer.material = tilledMaterial; break;
                 case FarmTile.Condition.Watered: tileRenderer.material = wateredMaterial; break;
-                case FarmTile.Condition.Planted: tileRenderer.material = wateredMaterial; break;
+                case FarmTile.Condition.Planted: tileRenderer.material = isSoilWatered? wateredMaterial : tilledMaterial; break;
                 case FarmTile.Condition.Harvestable: tileRenderer.material = wateredMaterial; break;
             }
         }
@@ -251,12 +256,14 @@ namespace Farming
                     UpdateVisual();
                     return;
                 } 
+                isSoilWatered = !isSoilWatered;
                 UpdateCondition();
-                //UpdateVisual();
+                UpdateVisual();
                 return;
             }
 
             daysSinceLastInteraction++;
+            
             if(daysSinceLastInteraction >= 2)
             {
                 if(tileCondition == FarmTile.Condition.Watered) tileCondition = FarmTile.Condition.Tilled;

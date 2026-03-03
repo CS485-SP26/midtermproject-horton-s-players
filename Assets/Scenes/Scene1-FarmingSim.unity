@@ -2334,6 +2334,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   stepAudio: {fileID: 383629377}
+  harvestAudio: {fileID: 0}
   tillAudio: {fileID: 383629376}
   waterAudio: {fileID: 383629375}
 --- !u!82 &383629375
@@ -3025,6 +3026,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   stepAudio: {fileID: 400642163}
+  harvestAudio: {fileID: 0}
   tillAudio: {fileID: 400642162}
   waterAudio: {fileID: 400642161}
 --- !u!82 &400642161
@@ -3583,6 +3585,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   stepAudio: {fileID: 413481111}
+  harvestAudio: {fileID: 0}
   tillAudio: {fileID: 413481110}
   waterAudio: {fileID: 413481109}
 --- !u!82 &413481109
@@ -5136,6 +5139,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   stepAudio: {fileID: 575667308}
+  harvestAudio: {fileID: 0}
   tillAudio: {fileID: 575667307}
   waterAudio: {fileID: 575667306}
 --- !u!82 &575667306
@@ -5613,6 +5617,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   stepAudio: {fileID: 593384254}
+  harvestAudio: {fileID: 593384254}
   tillAudio: {fileID: 593384253}
   waterAudio: {fileID: 593384252}
 --- !u!82 &593384252
@@ -6085,6 +6090,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   stepAudio: {fileID: 621895053}
+  harvestAudio: {fileID: 0}
   tillAudio: {fileID: 621895052}
   waterAudio: {fileID: 621895051}
 --- !u!82 &621895051
@@ -6919,6 +6925,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   stepAudio: {fileID: 749749636}
+  harvestAudio: {fileID: 0}
   tillAudio: {fileID: 749749635}
   waterAudio: {fileID: 749749634}
 --- !u!82 &749749634
@@ -7574,6 +7581,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   stepAudio: {fileID: 818270252}
+  harvestAudio: {fileID: 0}
   tillAudio: {fileID: 818270251}
   waterAudio: {fileID: 818270250}
 --- !u!82 &818270250
@@ -10204,7 +10212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DayNightControl
   sunLight: {fileID: 410087040}
   dayLabel: {fileID: 555931015}
-  dayLengthSeconds: 10
+  dayLengthSeconds: 20
   dayProgressSeconds: 0
   currentDay: 1
   dayPassedEvent:
@@ -10286,6 +10294,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   stepAudio: {fileID: 1259173397}
+  harvestAudio: {fileID: 0}
   tillAudio: {fileID: 1259173396}
   waterAudio: {fileID: 1259173395}
 --- !u!82 &1259173395
@@ -11351,6 +11360,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   stepAudio: {fileID: 1347809123}
+  harvestAudio: {fileID: 0}
   tillAudio: {fileID: 1347809122}
   waterAudio: {fileID: 1347809121}
 --- !u!82 &1347809121
@@ -12007,6 +12017,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   stepAudio: {fileID: 1381054964}
+  harvestAudio: {fileID: 0}
   tillAudio: {fileID: 1381054963}
   waterAudio: {fileID: 1381054962}
 --- !u!82 &1381054962
@@ -12438,6 +12449,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   stepAudio: {fileID: 1393355534}
+  harvestAudio: {fileID: 0}
   tillAudio: {fileID: 1393355533}
   waterAudio: {fileID: 1393355532}
 --- !u!82 &1393355532
@@ -12869,6 +12881,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   stepAudio: {fileID: 1403734918}
+  harvestAudio: {fileID: 0}
   tillAudio: {fileID: 1403734917}
   waterAudio: {fileID: 1403734916}
 --- !u!82 &1403734916
@@ -15344,6 +15357,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   stepAudio: {fileID: 1697533645}
+  harvestAudio: {fileID: 0}
   tillAudio: {fileID: 1697533644}
   waterAudio: {fileID: 1697533643}
 --- !u!82 &1697533643
@@ -16387,6 +16401,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 876916362}
     m_Modifications:
+    - target: {fileID: 663459191659964558, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
+      propertyPath: m_Color.b
+      value: 0.038714837
+      objectReference: {fileID: 0}
+    - target: {fileID: 663459191659964558, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5471698
+      objectReference: {fileID: 0}
+    - target: {fileID: 663459191659964558, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
+      propertyPath: m_Color.r
+      value: 0.41436934
+      objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -16461,11 +16487,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -51
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -17678,6 +17704,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   stepAudio: {fileID: 2056574615}
+  harvestAudio: {fileID: 0}
   tillAudio: {fileID: 2056574614}
   waterAudio: {fileID: 2056574613}
 --- !u!82 &2056574613
@@ -18221,6 +18248,7 @@ MonoBehaviour:
   tilledMaterial: {fileID: 2100000, guid: 053fa0c86b03be449bd117d80d1eb19c, type: 2}
   wateredMaterial: {fileID: 2100000, guid: da86e0e9da248f44685781dc53d77c8f, type: 2}
   stepAudio: {fileID: 2096229169}
+  harvestAudio: {fileID: 0}
   tillAudio: {fileID: 2096229168}
   waterAudio: {fileID: 2096229167}
 --- !u!82 &2096229167

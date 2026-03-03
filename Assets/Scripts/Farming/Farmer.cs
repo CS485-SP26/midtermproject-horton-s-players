@@ -1,7 +1,9 @@
+using System.Collections;
 using UnityEngine;
 using TMPro;
 using Character;
 using Environment;
+
 namespace Farming
 {
 
@@ -93,14 +95,14 @@ namespace Farming
                         if (!TrySpendEnergy(energyPerDig)) return;
                         animatedController.SetTrigger("Till"); 
                         Debug.Log("SetTrigger TILL"); 
-                        tile.Interact();
+                        StartCoroutine(DelayedInteract(tile, 0.5f));
                         break;
                     case FarmTile.Condition.Tilled: 
                         if (waterLevel >= waterPerUse && TrySpendEnergy(energyPerWaterUse))
                         {
                             animatedController.SetTrigger("Water"); 
                             Debug.Log("SetTrigger WATER"); 
-                            tile.Interact();
+                            StartCoroutine(DelayedInteract(tile, 1f));
                             waterLevel -= waterPerUse;
                             TouchActionTime();
                             RefreshResourceUI();
@@ -108,7 +110,9 @@ namespace Farming
                         }
                         break;
                     case FarmTile.Condition.Watered:
-                        tile.Interact();
+                        animatedController.SetTrigger("PlantSeed"); 
+                        Debug.Log("SetTrigger PLANT SEED"); 
+                        StartCoroutine(DelayedInteract(tile, 1f));
                         TouchActionTime();
                         break;
                     case FarmTile.Condition.Planted:
@@ -133,9 +137,10 @@ namespace Farming
                         break;
                     case FarmTile.Condition.Harvestable:
                         if (!TrySpendEnergy(energyPerDig)) return;
-                        //TODO: animatedController.SetTrigger("Harvest")
+                        animatedController.SetTrigger("Harvest");
+                        // delay the actual interaction until after the animation
                         Debug.Log("SetTrigger HARVEST");
-                        tile.Interact();
+                        StartCoroutine(DelayedInteract(tile, 3f));
                         TouchActionTime();
                         break;
                     default: break;
@@ -233,6 +238,12 @@ namespace Farming
             waterLevel = 1f;
             RefreshResourceUI();
             TouchActionTime();
+        }
+
+        private IEnumerator DelayedInteract(FarmTile tile, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            tile.Interact();
         }
     }
 }
