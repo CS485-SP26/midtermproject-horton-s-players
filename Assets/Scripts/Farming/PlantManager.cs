@@ -104,6 +104,12 @@ namespace Farming
 
         private void OnDayPassed()
         {
+            int dryDaysToWither = 2;
+            if (dayController)
+            {
+                dryDaysToWither = dayController.GetWitherDaysForCurrentSeason();
+            }
+
             for (int i = activePlants.Count - 1; i >= 0; i--)
             {
                 Plant plant = activePlants[i];
@@ -113,7 +119,7 @@ namespace Farming
                     continue;
                 }
 
-                plant.Growth();
+                plant.Growth(dryDaysToWither);
                 FarmTile tile = plant.GetComponentInParent<FarmTile>();
                 if (tile)
                 {

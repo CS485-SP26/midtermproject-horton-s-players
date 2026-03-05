@@ -7,6 +7,25 @@ namespace Environment
 {
     public class DayController : MonoBehaviour
     {
+        public enum DayOfWeek
+        {
+            Monday,
+            Tuesday,
+            Wednesday,
+            Thursday,
+            Friday,
+            Saturday,
+            Sunday
+        }
+
+        public enum Season
+        {
+            Spring,
+            Summer,
+            Fall,
+            Winter
+        }
+
         [Header("Object References")]
         [SerializeField] private Light sunLight;
         [SerializeField] private TMP_Text dayLabel;
@@ -16,11 +35,31 @@ namespace Environment
         [SerializeField] private float dayProgressSeconds = 0f; // good for debugging from the editor
         [SerializeField] private int currentDay = 1; // Good for debugging from the editor
 
+        [Header("Season Settings")]
+        [SerializeField, Min(1)] private int weeksPerSeason = 2;
+        [SerializeField, Min(1)] private int springWitherDays = 3;
+        [SerializeField, Min(1)] private int summerWitherDays = 2;
+        [SerializeField, Min(1)] private int fallWitherDays = 3;
+        [SerializeField, Min(1)] private int winterWitherDays = 1;
+        [SerializeField] private Color springSunTint = new Color(1f, 0.95f, 0.8f, 1f);
+        [SerializeField] private Color summerSunTint = new Color(1f, 0.98f, 0.86f, 1f);
+        [SerializeField] private Color fallSunTint = new Color(1f, 0.82f, 0.62f, 1f);
+        [SerializeField] private Color winterSunTint = new Color(0.82f, 0.9f, 1f, 1f);
+
         // Properties
         public float DayProgressPercent => Mathf.Clamp01(dayProgressSeconds / dayLengthSeconds);
         public int CurrentDay { get { return currentDay; } } 
+        public DayOfWeek CurrentDayOfWeek => (DayOfWeek)((currentDay - 1) % 7);
+        public Season CurrentSeason => CalculateSeason(currentDay);
+        public int CurrentWeekInSeason => CalculateWeekInSeason(currentDay);
+        public int WeeksPerSeason => weeksPerSeason;
 
         public UnityEvent dayPassedEvent = new UnityEvent(); // Invoke() at end of day
+
+        private string BuildDayLabelText()
+        {
+            return $"Day {currentDay} • {CurrentDayOfWeek} • {CurrentSeason} W{CurrentWeekInSeason}";
+        }
 
         void Start()
         {
@@ -29,7 +68,7 @@ namespace Environment
 
             if (dayLabel)
             {
-                dayLabel.SetText("Days: {0}", currentDay);
+                dayLabel.SetText(BuildDayLabelText());
             }
 
             UpdateVisuals();
@@ -45,16 +84,65 @@ namespace Environment
             
             if (dayLabel)
             {
-                // Don't do this! It generates garbage (will eventually invoke Garbage Collect)
-                //dayLabel.text="Days: " + currentDay.ToString();
-
-                // Do this instead
-                dayLabel.SetText("Days: {0}", currentDay);                
+                dayLabel.SetText(BuildDayLabelText());
             }
 
             GameManager.Instance.SaveDayCount(currentDay);
 
             dayPassedEvent.Invoke(); //make announcement to all listeners
+        }
+
+        public int GetWitherDaysForCurrentSeason()
+        {
+            return GetWitherDaysForSeason(CurrentSeason);
+        }
+
+        public int GetWitherDaysForSeason(Season season)
+        {
+            switch (season)
+            {
+                case Season.Spring:
+                    return springWitherDays;
+                case Season.Summer:
+                    return summerWitherDays;
+                case Season.Fall:
+                    return fallWitherDays;
+                case Season.Winter:
+                    return winterWitherDays;
+                default:
+                    return springWitherDays;
+            }
+        }
+
+        private Season CalculateSeason(int absoluteDay)
+        {
+            int daysPerSeason = Mathf.Max(1, weeksPerSeason) * 7;
+            int seasonIndex = ((Mathf.Max(1, absoluteDay) - 1) / daysPerSeason) % 4;
+            return (Season)seasonIndex;
+        }
+
+        private int CalculateWeekInSeason(int absoluteDay)
+        {
+            int safeWeeksPerSeason = Mathf.Max(1, weeksPerSeason);
+            int seasonDayIndex = (Mathf.Max(1, absoluteDay) - 1) % (safeWeeksPerSeason * 7);
+            return (seasonDayIndex / 7) + 1;
+        }
+
+        private Color GetSunTintForSeason(Season season)
+        {
+            switch (season)
+            {
+                case Season.Spring:
+                    return springSunTint;
+                case Season.Summer:
+                    return summerSunTint;
+                case Season.Fall:
+                    return fallSunTint;
+                case Season.Winter:
+                    return winterSunTint;
+                default:
+                    return Color.white;
+            }
         }
 
         public void UpdateVisuals()
@@ -65,6 +153,7 @@ namespace Environment
 
             // Apply rotation to the sun light
             sunLight.transform.rotation = Quaternion.Euler(sunRotationX, 0f, 0f);
+            sunLight.color = GetSunTintForSeason(CurrentSeason);
 
             // Optional: Adjust other elements, like skybox, light source intensity, and so on
             // sunLight.intensity = 
@@ -74,6 +163,11 @@ namespace Environment
 
         void Update()
         {
+            if (dayLengthSeconds <= 0f)
+            {
+                return;
+            }
+
             dayProgressSeconds += Time.deltaTime;
 
             if (dayProgressSeconds >= dayLengthSeconds)

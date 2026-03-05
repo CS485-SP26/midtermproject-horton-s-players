@@ -42,8 +42,7 @@ namespace Character
         
         void ApplyMovement()
         {
-            // TODO integrate your physics from week 2-3 
-            Vector3 movement = new Vector3(moveInput.x, 0f, moveInput.y);
+            Vector3 movement = GetPlanarMoveDirection();
             movement *= Time.deltaTime * acceleration;
             rb.AddForce(movement, ForceMode.Force);
         }

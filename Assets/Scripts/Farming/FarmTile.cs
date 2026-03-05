@@ -130,10 +130,22 @@ namespace Farming
 
         public void Harvest()
         {
-            if (tileCondition != Condition.Harvestable || !plantedPlant) // return if it cant be harvested
+            if (tileCondition != Condition.Harvestable)
             {
                 return;
             }
+
+            if (!plantedPlant)
+            {
+                plantedPlant = GetComponentInChildren<Plant>();
+            }
+
+            if (!plantedPlant)
+            {
+                Debug.LogWarning("Harvest failed: tile is harvestable but has no plant reference.", this);
+                return;
+            }
+
             Destroy(plantedPlant.gameObject); // destroy the plant
             harvestAudio?.Play();
             plantedPlant = null; // set to null

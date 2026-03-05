@@ -6,6 +6,24 @@ public class RaycastSelector : TileSelector
 { 
     [SerializeField] private float rayDistance = 5f;
     LineRenderer rayLine;
+
+    private bool TryGetFarmTile(RaycastHit hitInfo, out FarmTile tile)
+    {
+        tile = null;
+        if (hitInfo.collider == null)
+        {
+            return false;
+        }
+
+        if (hitInfo.collider.TryGetComponent<FarmTile>(out tile))
+        {
+            return true;
+        }
+
+        tile = hitInfo.collider.GetComponentInParent<FarmTile>();
+        return tile != null;
+    }
+
     void Start()
     {
         rayLine = GetComponent<LineRenderer>();
@@ -19,9 +37,13 @@ public class RaycastSelector : TileSelector
         Ray ray = new Ray(transform.position, transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, rayDistance))
         {
-            if (hitInfo.collider.TryGetComponent<FarmTile>(out FarmTile tile))
+            if (TryGetFarmTile(hitInfo, out FarmTile tile))
             {
                 SetActiveTile(tile);
+            }
+            else
+            {
+                SetActiveTile(null);
             }
         } else //didnt hit anything
         {

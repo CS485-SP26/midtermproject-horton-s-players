@@ -98,12 +98,14 @@ namespace Farming
             return true;
         }
 
-        public void Growth()
+        public void Growth(int dryDaysToWither)
         {
             if (plantCondition == Condition.Withered)
             {
                 return;
             }
+
+            int requiredDryDays = Mathf.Max(1, dryDaysToWither);
 
             if (receivedWaterToday)
             {
@@ -128,7 +130,7 @@ namespace Farming
             {
                 wateredDays = 0;
                 dryDays++;
-                if (dryDays >= 2)
+                if (dryDays >= requiredDryDays)
                 {
                     plantCondition = Plant.Condition.Withered;
                 }

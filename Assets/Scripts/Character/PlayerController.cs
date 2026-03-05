@@ -10,6 +10,7 @@ namespace Character
     public class PlayerController : MonoBehaviour
     { 
         [SerializeField] private TileSelector tileSelector;
+        [SerializeField] private CameraFollow cameraFollow;
         MovementController moveController;      
         AnimatedController animatedController;
         Farmer farmer;
@@ -21,6 +22,25 @@ namespace Character
             Debug.Assert(animatedController, "Player requires an animatedController");
             Debug.Assert(tileSelector, "Player requires a TileSelector.");
             Debug.Assert(moveController, "PlayerController requires a MovementController");
+
+            if (!cameraFollow)
+            {
+                Camera mainCamera = Camera.main;
+                if (mainCamera)
+                {
+                    cameraFollow = mainCamera.GetComponent<CameraFollow>();
+                }
+            }
+
+            if (cameraFollow)
+            {
+                cameraFollow.SetPlayer(transform);
+                moveController.SetMovementReference(cameraFollow.transform);
+            }
+            else if (Camera.main)
+            {
+                moveController.SetMovementReference(Camera.main.transform);
+            }
         }
         public void OnMove(InputValue inputValue)
         {
@@ -40,6 +60,16 @@ namespace Character
             Debug.Log("Interact Pressed");
             FarmTile tile = tileSelector.GetSelectedTile();
             farmer.TryTileInteract(tile);
+        }
+
+        public void OnLook(InputValue inputValue)
+        {
+            if (!cameraFollow)
+            {
+                return;
+            }
+
+            cameraFollow.SetLookInput(inputValue.Get<Vector2>());
         }
         
     }

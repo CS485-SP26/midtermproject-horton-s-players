@@ -7,8 +7,17 @@ namespace Character {
         [Header("Movement Settings")]
         [SerializeField] protected float acceleration = 20f;
         [SerializeField] protected float maxVelocity = 5f;
+        [SerializeField] protected Transform movementReference;
         protected Rigidbody rb;
         protected Vector2 moveInput;
+
+        protected virtual void Awake()
+        {
+            if (!movementReference && Camera.main)
+            {
+                movementReference = Camera.main.transform;
+            }
+        }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         protected virtual void Start()
@@ -34,6 +43,34 @@ namespace Character {
             return moveInput == Vector2.zero ? 0f : 1f;
         }
 
+        public void SetMovementReference(Transform reference)
+        {
+            movementReference = reference;
+        }
+
+        protected Vector3 GetPlanarMoveDirection()
+        {
+            if (!movementReference)
+            {
+                movementReference = Camera.main ? Camera.main.transform : null;
+            }
+
+            if (!movementReference)
+            {
+                return new Vector3(moveInput.x, 0f, moveInput.y).normalized;
+            }
+
+            Vector3 forward = movementReference.forward;
+            Vector3 right = movementReference.right;
+            forward.y = 0f;
+            right.y = 0f;
+            forward.Normalize();
+            right.Normalize();
+
+            Vector3 moveDirection = (right * moveInput.x) + (forward * moveInput.y);
+            return moveDirection.sqrMagnitude > 1f ? moveDirection.normalized : moveDirection;
+        }
+
         protected virtual void FixedUpdate()
         {
             SimpleMovement();
@@ -41,10 +78,7 @@ namespace Character {
 
         void SimpleMovement()
         {
-            Vector3 movement = Vector3.zero;
-            movement += transform.right * moveInput.x;
-            movement += transform.forward * moveInput.y;
-            movement.Normalize();
+            Vector3 movement = GetPlanarMoveDirection();
             movement *= Time.deltaTime * acceleration;
             rb.MovePosition(rb.position + movement);
         }
