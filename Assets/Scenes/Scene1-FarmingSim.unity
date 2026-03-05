@@ -1908,7 +1908,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &282081609
 MonoBehaviour:
@@ -13688,7 +13688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 572d3eaa58e154b2c89d9410f8cde560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Farming.PlantManager
-  plantPrefab: {fileID: 4044778614881427630, guid: 7ee826e7d131aab42bff2044c711ca38, type: 3}
+  plantPrefab: {fileID: 4733210144730784548, guid: 080fa6936f1ff5a4b9df2247a036c6f9, type: 3}
   dayController: {fileID: 1248295910}
   plantSpawnOffset: {x: 0, y: 0.1, z: 0}
 --- !u!4 &1476465279
@@ -18872,6 +18872,7 @@ SceneRoots:
   - {fileID: 1248295911}
   - {fileID: 657775634}
   - {fileID: 1135064476}
+  - {fileID: 1476465279}
   - {fileID: 697473047}
   - {fileID: 1771757892}
   - {fileID: 431992755}
@@ -18880,4 +18881,3 @@ SceneRoots:
   - {fileID: 1832991199}
   - {fileID: 571724848}
   - {fileID: 985255214}
-  - {fileID: 1476465279}

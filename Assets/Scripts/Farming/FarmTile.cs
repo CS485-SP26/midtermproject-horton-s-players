@@ -143,6 +143,7 @@ namespace Farming
             UpdateVisual();
 
             GameManager.Instance.AddTomatoes(1); // increment tomato count (changing this later if we decide to add an inventory)
+            Debug.Log("Added Tomato");
         }
 
         public bool HasWitheredPlant()
