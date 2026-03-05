@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ef77d0cf1fdabd04ba73404c845a0e25
+guid: e0d136a1dd3e95d4fae769134e3c5536
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -112,5 +112,5 @@ AssetOrigin:
   productId: 243035
   packageName: 'GameDev Starter Kit - Farming [Free Edition]'
   packageVersion: v1.1.0
-  assetPath: Assets/Art/Models/AssetHunts!/GameDev Starter Kit - Farming/Source File/Farm_Tool_Watering_Pot_01.fbx
+  assetPath: Assets/Art/Models/AssetHunts!/GameDev Starter Kit - Farming/Source File/Farm_Crop_Carrot_01.fbx
   uploadId: 767301

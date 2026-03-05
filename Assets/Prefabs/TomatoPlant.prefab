@@ -65,6 +65,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 8971916585849269643, guid: c3568e678d846a349a694e4904eb4247, type: 3}
+    - target: {fileID: -2982951110605654832, guid: a77b1fdbf51c0bb468b6856002ff9a3a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1941980279283757603, guid: a77b1fdbf51c0bb468b6856002ff9a3a, type: 3}
       propertyPath: m_Name
       value: Plant_Withered
@@ -136,6 +140,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7917999924309930137}
     m_Modifications:
+    - target: {fileID: 3169553560957506919, guid: f12845bb4d1709a499e97026b8068627, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4425155702340450573, guid: f12845bb4d1709a499e97026b8068627, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -219,6 +227,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7917999924309930137}
     m_Modifications:
+    - target: {fileID: -6539169504012190767, guid: 1392dbd2be3bbd04d8e5c57b904b42ae, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6651310731303358679, guid: 1392dbd2be3bbd04d8e5c57b904b42ae, type: 3}
       propertyPath: m_Name
       value: Plant_Tomato_Small
@@ -304,6 +316,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7917999924309930137}
     m_Modifications:
+    - target: {fileID: -5761254778823685428, guid: 98541326b56e6e14eb84d42aa2461bac, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6224116358078192158, guid: 98541326b56e6e14eb84d42aa2461bac, type: 3}
       propertyPath: m_LocalScale.x
       value: 1

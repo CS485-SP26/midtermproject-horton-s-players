@@ -10,5 +10,6 @@ AssetOrigin:
   productId: 243035
   packageName: 'GameDev Starter Kit - Farming [Free Edition]'
   packageVersion: v1.1.0
-  assetPath: Assets/AssetHunts!/GameDev Starter Kit - Farming/Asset/Farm Tool/Farm_Tool_Watering_Pot_01.prefab
+  assetPath: Assets/Art/Models/AssetHunts!/GameDev Starter Kit - Farming/Asset/Farm
+    Tool/Farm_Tool_Watering_Pot_01.prefab
   uploadId: 767301

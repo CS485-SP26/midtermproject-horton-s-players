@@ -13688,7 +13688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 572d3eaa58e154b2c89d9410f8cde560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Farming.PlantManager
-  plantPrefab: {fileID: 4733210144730784548, guid: 080fa6936f1ff5a4b9df2247a036c6f9, type: 3}
+  plantPrefab: {fileID: 4733210144730784548, guid: b03d7492518a7644992c46bfd425e64b, type: 3}
   dayController: {fileID: 1248295910}
   plantSpawnOffset: {x: 0, y: 0.1, z: 0}
 --- !u!4 &1476465279
