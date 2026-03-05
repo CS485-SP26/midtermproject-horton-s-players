@@ -1883,6 +1883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Character.MovementController
   acceleration: 20
   maxVelocity: 5
+  movementReference: {fileID: 415541399}
 --- !u!54 &282081608
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1924,6 +1925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Character.PhysicsMovement
   acceleration: 2000
   maxVelocity: 5
+  movementReference: {fileID: 415541399}
   drag: 0.5
   rotationSpeed: 5
   jumpForce: 5
@@ -1940,6 +1942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Character.PlayerController
   tileSelector: {fileID: 1476178515}
+  cameraFollow: {fileID: 415541395}
 --- !u!114 &282081612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3957,6 +3960,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 413481106}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &415541395 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5485089592789745108, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
+  m_PrefabInstance: {fileID: 3669322243495948795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b63f88bb9da30945b99b81ec8216dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
+--- !u!4 &415541399 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 416930778977442110, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
+  m_PrefabInstance: {fileID: 3669322243495948795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &431992750
 GameObject:
   m_ObjectHideFlags: 0
@@ -4172,6 +4191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Character.PhysicsMovement
   acceleration: 2000
   maxVelocity: 5
+  movementReference: {fileID: 0}
   drag: 0.5
   rotationSpeed: 5
   jumpForce: 5
@@ -4188,6 +4208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Character.PlayerController
   tileSelector: {fileID: 1114254702}
+  cameraFollow: {fileID: 0}
 --- !u!114 &431992762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4215,6 +4236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Character.MovementController
   acceleration: 20
   maxVelocity: 5
+  movementReference: {fileID: 0}
 --- !u!114 &431992764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4918,6 +4940,15 @@ MonoBehaviour:
   dayLengthSeconds: 60
   dayProgressSeconds: 0
   currentDay: 1
+  weeksPerSeason: 2
+  springWitherDays: 3
+  summerWitherDays: 2
+  fallWitherDays: 3
+  winterWitherDays: 1
+  springSunTint: {r: 1, g: 0.95, b: 0.8, a: 1}
+  summerSunTint: {r: 1, g: 0.98, b: 0.86, a: 1}
+  fallSunTint: {r: 1, g: 0.82, b: 0.62, a: 1}
+  winterSunTint: {r: 0.82, g: 0.9, b: 1, a: 1}
   dayPassedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -10212,9 +10243,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DayNightControl
   sunLight: {fileID: 410087040}
   dayLabel: {fileID: 555931015}
-  dayLengthSeconds: 20
+  dayLengthSeconds: 1
   dayProgressSeconds: 0
   currentDay: 1
+  weeksPerSeason: 2
+  springWitherDays: 3
+  summerWitherDays: 2
+  fallWitherDays: 3
+  winterWitherDays: 1
+  springSunTint: {r: 1, g: 0.95, b: 0.8, a: 1}
+  summerSunTint: {r: 1, g: 0.8666667, b: 0, a: 1}
+  fallSunTint: {r: 1, g: 0.5490196, b: 0, a: 1}
+  winterSunTint: {r: 0.82, g: 0.9, b: 1, a: 1}
   dayPassedEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -18744,7 +18784,7 @@ PrefabInstance:
     - target: {fileID: 5485089592789745108, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 282081597}
+      objectReference: {fileID: 282081598}
     - target: {fileID: 5485089592789745108, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
       propertyPath: offset.y
       value: 3
@@ -18752,6 +18792,14 @@ PrefabInstance:
     - target: {fileID: 5485089592789745108, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
       propertyPath: offset.z
       value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485089592789745108, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
+      propertyPath: lookSensitivityX
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485089592789745108, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
+      propertyPath: lookSensitivityY
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8942792083406501520, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
       propertyPath: m_Name
