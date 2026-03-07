@@ -37,7 +37,7 @@ public class StoreUI : MonoBehaviour
     private void UpdateStoreDisplay()
     {
         seedsText.text = "Seeds: " + GameManager.Instance.getSeeds();
-        tomatoesText.text = "Tomatoes: " + GameManager.Instance.getTomatoes();
+        tomatoesText.text = "Plants: " + GameManager.Instance.getTomatoes();
 
     }
     private void UpdateStoreButtons()

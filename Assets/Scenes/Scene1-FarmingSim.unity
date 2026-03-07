@@ -4843,7 +4843,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Days:  1'
+  m_text: "Day 6 \u2022 Saturday \u2022 Spring W1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4870,8 +4870,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4909,7 +4909,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: -6.000082}
+  m_margin: {x: 0, y: 0, z: -66.73139, w: -6.000082}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -10243,7 +10243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DayNightControl
   sunLight: {fileID: 410087040}
   dayLabel: {fileID: 555931015}
-  dayLengthSeconds: 1
+  dayLengthSeconds: 5
   dayProgressSeconds: 0
   currentDay: 1
   weeksPerSeason: 2
@@ -13377,8 +13377,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -13728,7 +13728,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 572d3eaa58e154b2c89d9410f8cde560, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Farming.PlantManager
-  plantPrefab: {fileID: 4733210144730784548, guid: b03d7492518a7644992c46bfd425e64b, type: 3}
+  springPlantPrefab: {fileID: 4733210144730784548, guid: 080fa6936f1ff5a4b9df2247a036c6f9, type: 3}
+  summerPlantPrefab: {fileID: 4733210144730784548, guid: b03d7492518a7644992c46bfd425e64b, type: 3}
+  fallPlantPrefab: {fileID: 4733210144730784548, guid: df600b5e7024fe34f90e733899025f1c, type: 3}
+  winterPlantPrefab: {fileID: 4733210144730784548, guid: d034ba6a96a0f1947b9ca435d27691b2, type: 3}
   dayController: {fileID: 1248295910}
   plantSpawnOffset: {x: 0, y: 0.1, z: 0}
 --- !u!4 &1476465279
@@ -16511,7 +16514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.70710653
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_LocalRotation.x
@@ -16523,15 +16526,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.70710707
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1
+      value: 196.8
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 30
+      value: -23
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -16543,7 +16546,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 4131262097869954318, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_Name
@@ -18794,11 +18797,27 @@ PrefabInstance:
       value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 5485089592789745108, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
+      propertyPath: targetOffset.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485089592789745108, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
+      propertyPath: targetOffset.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485089592789745108, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
+      propertyPath: targetOffset.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485089592789745108, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
       propertyPath: lookSensitivityX
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5485089592789745108, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
       propertyPath: lookSensitivityY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485089592789745108, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
+      propertyPath: steerWithCursorPosition
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8942792083406501520, guid: 6b079cfe482d2fe41b4315e111d183d8, type: 3}
@@ -18864,27 +18883,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.70710677
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 166.1
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -27.7
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -18896,7 +18915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1780389384758214849, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 4131262097869954318, guid: 096d4b026de069c459d8448ed259c4ee, type: 3}
       propertyPath: m_Name

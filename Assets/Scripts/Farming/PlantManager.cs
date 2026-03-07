@@ -8,11 +8,15 @@ namespace Farming
     {
         public static PlantManager Instance { get; private set; }
 
-        [SerializeField] private Plant plantPrefab;
+        [SerializeField] private Plant springPlantPrefab;
+        [SerializeField] private Plant summerPlantPrefab;
+        [SerializeField] private Plant fallPlantPrefab;
+        [SerializeField] private Plant winterPlantPrefab;
         [SerializeField] private DayController dayController;
         [SerializeField] private Vector3 plantSpawnOffset = new Vector3(0f, 0.5f, 0f);
 
         private readonly List<Plant> activePlants = new List<Plant>();
+        private Plant plantPrefab = null;
 
         void Awake()
         {
@@ -102,6 +106,25 @@ namespace Farming
             activePlants.Add(plant);
         }
 
+        public void ChangePlantPrefab()
+        {
+            switch (dayController.CurrentSeason)
+            {
+                case DayController.Season.Spring:
+                    plantPrefab = springPlantPrefab;
+                    break;
+                case DayController.Season.Summer:
+                    plantPrefab = summerPlantPrefab;
+                    break;
+                case DayController.Season.Fall:
+                    plantPrefab = fallPlantPrefab;
+                    break;
+                case DayController.Season.Winter:
+                    plantPrefab = winterPlantPrefab;
+                    break;
+            }
+        }
+
         private void OnDayPassed()
         {
             int dryDaysToWither = 2;
@@ -126,6 +149,7 @@ namespace Farming
                     tile.UpdateCondition();
                 }
             }
+            ChangePlantPrefab();
         }
     }
 }
