@@ -59,10 +59,15 @@ namespace Character
             lookDirection = Vector2.ClampMagnitude(lookDirection, 1f);
             lookDirection.y = 0f;
 
+            if  (lookDirection.x == 0f)
+            {
+                yaw = player.eulerAngles.y;
+            }
+
             yaw += lookDirection.x * lookSensitivityX * Time.deltaTime;
             pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
-            Vector3 pivot = player.position + targetOffset;
+            Vector3 pivot = player.TransformPoint(targetOffset);
             Quaternion lookRotation = Quaternion.Euler(pitch, yaw, 0f);
             Vector3 desiredPosition = pivot - (lookRotation * Vector3.forward * followDistance);
 
